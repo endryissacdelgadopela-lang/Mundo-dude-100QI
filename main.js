@@ -1,293 +1,107 @@
-let coins =
-Number(localStorage.getItem("coins")) || 100;
-
-let diamonds =
-Number(localStorage.getItem("diamonds")) || 100;
-
-let health =
-Number(localStorage.getItem("health")) || 100;
+let coins = Number(localStorage.getItem("coins")) || 100;
+let diamonds = Number(localStorage.getItem("diamonds")) || 100;
+let health = 100;
 
 function saveGame(){
-
-localStorage.setItem(
-"coins",
-coins
-);
-
-localStorage.setItem(
-"diamonds",
-diamonds
-);
-
-localStorage.setItem(
-"health",
-health
-);
-
+ localStorage.setItem("coins",coins);
+ localStorage.setItem("diamonds",diamonds);
 }
 
 function updateUI(){
 
-document.getElementById(
-"coins"
-).innerText = coins;
+ const coinsText=document.getElementById("coins");
+ const diamondsText=document.getElementById("diamonds");
 
-document.getElementById(
-"diamonds"
-).innerText = diamonds;
+ if(coinsText) coinsText.innerText=coins;
+ if(diamondsText) diamondsText.innerText=diamonds;
 
-document.getElementById(
-"hudCoins"
-).innerText =
-"💰 " + coins;
+ const hudCoins=document.getElementById("hudCoins");
+ const hudDiamonds=document.getElementById("hudDiamonds");
 
-document.getElementById(
-"hudDiamonds"
-).innerText =
-"💎 " + diamonds;
-
-document.getElementById(
-"playerHealth"
-).innerText =
-"❤️ " + health;
+ if(hudCoins) hudCoins.innerText="💰 "+coins;
+ if(hudDiamonds) hudDiamonds.innerText="💎 "+diamonds;
 
 }
 
 updateUI();
 
-const playBtn =
-document.getElementById(
-"playBtn"
-);
+document.getElementById("playBtn").onclick=()=>{
 
-playBtn.onclick = () => {
-
-document.getElementById(
-"mainMenu"
-).style.display =
-"none";
-
-document.getElementById(
-"hud"
-).style.display =
-"block";
+ document.getElementById("mainMenu").style.display="none";
+ document.getElementById("hud").style.display="block";
 
 };
 
-const menuOpen =
-document.getElementById(
-"menuOpen"
-);
+document.getElementById("shopBtn").onclick=()=>{
+ document.getElementById("shopPanel").style.display="block";
+};
 
-menuOpen.onclick = () => {
+document.getElementById("closeShop").onclick=()=>{
+ document.getElementById("shopPanel").style.display="none";
+};
 
-document.getElementById(
-"gameMenu"
-).style.display =
-"block";
+document.getElementById("houseBtn").onclick=()=>{
+ document.getElementById("housePanel").style.display="block";
+};
+
+document.getElementById("closeHouse").onclick=()=>{
+ document.getElementById("housePanel").style.display="none";
+};
+
+document.getElementById("menuOpen").onclick=()=>{
+ document.getElementById("gameMenu").style.display="block";
+};
+
+document.getElementById("closeMenu").onclick=()=>{
+ document.getElementById("gameMenu").style.display="none";
+};
+
+document.getElementById("loginCreator").onclick=()=>{
+
+ const pass=document.getElementById("creatorPassword").value;
+
+ if(pass==="Coins"){
+
+  document.getElementById("creatorLogin").style.display="none";
+  document.getElementById("creatorPanel").style.display="block";
+
+ }else{
+
+  alert("Contraseña incorrecta");
+
+ }
 
 };
 
-document.getElementById(
-"closeMenu"
-).onclick = () => {
+document.getElementById("addCoinsBtn").onclick=()=>{
 
-document.getElementById(
-"gameMenu"
-).style.display =
-"none";
+ coins+=1000;
+ saveGame();
+ updateUI();
 
 };
 
-document.getElementById(
-"shopBtn"
-).onclick = () => {
+document.getElementById("addDiamondsBtn").onclick=()=>{
 
-document.getElementById(
-"shopPanel"
-).style.display =
-"block";
+ diamonds+=1000;
+ saveGame();
+ updateUI();
 
 };
 
-document.getElementById(
-"closeShop"
-).onclick = () => {
+const scene = new THREE.Scene();
 
-document.getElementById(
-"shopPanel"
-).style.display =
-"none";
+scene.background = new THREE.Color(0x87ceeb);
 
-};
-
-document.getElementById(
-"houseBtn"
-).onclick = () => {
-
-document.getElementById(
-"housePanel"
-).style.display =
-"block";
-
-};
-
-document.getElementById(
-"closeHouse"
-).onclick = () => {
-
-document.getElementById(
-"housePanel"
-).style.display =
-"none";
-
-};
-
-document.getElementById(
-"settingsBtn"
-).onclick = () => {
-
-document.getElementById(
-"creatorLogin"
-).style.display =
-"block";
-
-};
-
-document.getElementById(
-"closeCreator"
-).onclick = () => {
-
-document.getElementById(
-"creatorLogin"
-).style.display =
-"none";
-
-};
-
-document.getElementById(
-"loginCreator"
-).onclick = () => {
-
-const pass =
-document.getElementById(
-"creatorPassword"
-).value;
-
-if(pass === "Coins"){
-
-document.getElementById(
-"creatorLogin"
-).style.display =
-"none";
-
-document.getElementById(
-"creatorPanel"
-).style.display =
-"block";
-
-}else{
-
-alert(
-"Contraseña incorrecta"
-);
-
-}
-
-};
-
-document.getElementById(
-"closeCreatorPanel"
-).onclick = () => {
-
-document.getElementById(
-"creatorPanel"
-).style.display =
-"none";
-
-};
-
-document.getElementById(
-"addCoinsBtn"
-).onclick = () => {
-
-coins += 1000;
-
-saveGame();
-
-updateUI();
-
-};
-
-document.getElementById(
-"addDiamondsBtn"
-).onclick = () => {
-
-diamonds += 1000;
-
-saveGame();
-
-updateUI();
-
-};
-
-document.getElementById(
-"healBtn"
-).onclick = () => {
-
-health = 100;
-
-saveGame();
-
-updateUI();
-
-};
-
-document.getElementById(
-"unlockBtn"
-).onclick = () => {
-
-alert(
-"Todo desbloqueado"
-);
-
-};
-
-document.getElementById(
-"customBtn"
-).onclick = () => {
-
-alert(
-"Personalización próximamente"
-);
-
-};
-
-const canvas =
-document.getElementById(
-"gameCanvas"
-);
-
-const scene =
-new THREE.Scene();
-
-scene.background =
-new THREE.Color(
-0x87ceeb
-);
-
-const camera =
-new THREE.PerspectiveCamera(
+const camera = new THREE.PerspectiveCamera(
 75,
-window.innerWidth /
-window.innerHeight,
+window.innerWidth/window.innerHeight,
 0.1,
 1000
 );
 
-const renderer =
-new THREE.WebGLRenderer({
-canvas:canvas,
+const renderer = new THREE.WebGLRenderer({
+canvas:document.getElementById("gameCanvas"),
 antialias:true
 });
 
@@ -296,30 +110,23 @@ window.innerWidth,
 window.innerHeight
 );
 
-const light =
-new THREE.DirectionalLight(
+const light = new THREE.DirectionalLight(
 0xffffff,
 1
 );
 
-light.position.set(
-5,
-10,
-5
-);
+light.position.set(10,20,10);
 
 scene.add(light);
 
-const ambient =
+scene.add(
 new THREE.AmbientLight(
 0xffffff,
 0.7
+)
 );
 
-scene.add(ambient);
-
-const ground =
-new THREE.Mesh(
+const ground = new THREE.Mesh(
 
 new THREE.PlaneGeometry(
 500,
@@ -327,154 +134,89 @@ new THREE.PlaneGeometry(
 ),
 
 new THREE.MeshStandardMaterial({
-
-color:0x3cb043
-
+color:0x44aa44
 })
 
 );
 
-ground.rotation.x =
--Math.PI/2;
+ground.rotation.x=-Math.PI/2;
 
-scene.add(
-ground
+scene.add(ground);
+
+/* PERSONAJE CON TU IMAGEN */
+
+const texture =
+new THREE.TextureLoader().load(
+"player.png"
 );
 
 const player =
-new THREE.Mesh(
+new THREE.Sprite(
 
-new THREE.CapsuleGeometry(
-0.5,
-1,
-4,
-8
-),
-
-new THREE.MeshStandardMaterial({
-
-color:0x0066ff
-
+new THREE.SpriteMaterial({
+map:texture
 })
 
 );
 
-player.position.y = 1;
-
-scene.add(
-player
+player.scale.set(
+5,
+6,
+1
 );
+
+player.position.set(
+0,
+3,
+0
+);
+
+scene.add(player);
 
 camera.position.set(
 0,
-5,
-8
+8,
+10
 );
 
-let moveUp=false;
-let moveDown=false;
-let moveLeft=false;
-let moveRight=false;
+let up=false;
+let down=false;
+let left=false;
+let right=false;
 
-document.getElementById(
-"upBtn"
-).ontouchstart=()=>{
-moveUp=true;
-};
+document.getElementById("upBtn").ontouchstart=()=>up=true;
+document.getElementById("upBtn").ontouchend=()=>up=false;
 
-document.getElementById(
-"upBtn"
-).ontouchend=()=>{
-moveUp=false;
-};
+document.getElementById("downBtn").ontouchstart=()=>down=true;
+document.getElementById("downBtn").ontouchend=()=>down=false;
 
-document.getElementById(
-"downBtn"
-).ontouchstart=()=>{
-moveDown=true;
-};
+document.getElementById("leftBtn").ontouchstart=()=>left=true;
+document.getElementById("leftBtn").ontouchend=()=>left=false;
 
-document.getElementById(
-"downBtn"
-).ontouchend=()=>{
-moveDown=false;
-};
-
-document.getElementById(
-"leftBtn"
-).ontouchstart=()=>{
-moveLeft=true;
-};
-
-document.getElementById(
-"leftBtn"
-).ontouchend=()=>{
-moveLeft=false;
-};
-
-document.getElementById(
-"rightBtn"
-).ontouchstart=()=>{
-moveRight=true;
-};
-
-document.getElementById(
-"rightBtn"
-).ontouchend=()=>{
-moveRight=false;
-};
+document.getElementById("rightBtn").ontouchstart=()=>right=true;
+document.getElementById("rightBtn").ontouchend=()=>right=false;
 
 function animate(){
 
-requestAnimationFrame(
-animate
-);
+ requestAnimationFrame(animate);
 
-if(moveUp)
-player.position.z -= 0.12;
+ if(up) player.position.z-=0.15;
+ if(down) player.position.z+=0.15;
+ if(left) player.position.x-=0.15;
+ if(right) player.position.x+=0.15;
 
-if(moveDown)
-player.position.z += 0.12;
+ camera.position.x=player.position.x;
+ camera.position.z=player.position.z+10;
 
-if(moveLeft)
-player.position.x -= 0.12;
+ camera.lookAt(
+  player.position
+ );
 
-if(moveRight)
-player.position.x += 0.12;
-
-camera.position.x =
-player.position.x;
-
-camera.position.z =
-player.position.z + 8;
-
-camera.lookAt(
-player.position
-);
-
-renderer.render(
-scene,
-camera
-);
+ renderer.render(
+  scene,
+  camera
+ );
 
 }
 
 animate();
-
-window.addEventListener(
-"resize",
-()=>{
-
-camera.aspect=
-window.innerWidth/
-window.innerHeight;
-
-camera.updateProjectionMatrix();
-
-renderer.setSize(
-window.innerWidth,
-window.innerHeight
-);
-
-}
-);
