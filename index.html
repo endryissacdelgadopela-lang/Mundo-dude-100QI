@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Survival Game</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="menu">
+
+<div class="topbar">
+<div>💰 <span id="coins">100</span> <button onclick="addCoins()">+</button></div>
+<div>💎 <span id="diamonds">100</span> <button onclick="addDiamonds()">+</button></div>
+</div>
+
+<h1>SURVIVAL GAME</h1>
+
+<button onclick="playGame()">JUGAR</button>
+
+<button onclick="openShop()">TIENDA</button>
+
+<button onclick="openCharacter()">PERSONALIZAR</button>
+
+<button onclick="openHouse()">CASAS</button>
+
+</div>
+
+<div id="hud">
+
+<div id="moneyHud">💰 100</div>
+
+<div id="diamondHud">💎 100</div>
+
+<button id="menuBtn" onclick="toggleGameMenu()">☰</button>
+
+</div>
+
+<div id="gameMenu">
+
+<button>Perfil</button>
+<button>Inventario</button>
+<button>Casas</button>
+<button>Tienda</button>
+
+</div>
+
+<div id="joystick">
+
+<button id="up">↑</button>
+
+<div>
+
+<button id="left">←</button>
+<button id="down">↓</button>
+<button id="right">→</button>
+
+</div>
+
+</div>
+
+<script src="main.js"></script>
+
+</body>
+</html>
