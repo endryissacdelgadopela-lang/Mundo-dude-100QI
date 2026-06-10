@@ -2,63 +2,262 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Survival Game</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Survival World</title>
+
 <link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
+
 </head>
 <body>
 
-<div id="menu">
+<!-- MENU PRINCIPAL -->
 
-<div class="topbar">
-<div>💰 <span id="coins">100</span> <button onclick="addCoins()">+</button></div>
-<div>💎 <span id="diamonds">100</span> <button onclick="addDiamonds()">+</button></div>
+<div id="mainMenu">
+
+<div id="topBar">
+
+<div class="currency">
+💰 <span id="coins">100</span>
 </div>
 
-<h1>SURVIVAL GAME</h1>
-
-<button onclick="playGame()">JUGAR</button>
-
-<button onclick="openShop()">TIENDA</button>
-
-<button onclick="openCharacter()">PERSONALIZAR</button>
-
-<button onclick="openHouse()">CASAS</button>
+<div class="currency">
+💎 <span id="diamonds">100</span>
+</div>
 
 </div>
+
+<h1 class="gameTitle">
+SURVIVAL WORLD
+</h1>
+
+<button class="menuButton" id="playBtn">
+JUGAR
+</button>
+
+<button class="menuButton" id="customBtn">
+PERSONALIZAR
+</button>
+
+<button class="menuButton" id="shopBtn">
+TIENDA
+</button>
+
+<button class="menuButton" id="houseBtn">
+CASAS
+</button>
+
+<button class="menuButton" id="settingsBtn">
+AJUSTES
+</button>
+
+</div>
+
+<!-- HUD DEL JUEGO -->
 
 <div id="hud">
 
-<div id="moneyHud">💰 100</div>
+<div id="hudCoins">
+💰 100
+</div>
 
-<div id="diamondHud">💎 100</div>
+<div id="hudDiamonds">
+💎 100
+</div>
 
-<button id="menuBtn" onclick="toggleGameMenu()">☰</button>
+<div id="playerHealth">
+❤️ 100
+</div>
+
+<button id="menuOpen">
+☰
+</button>
 
 </div>
+
+<!-- MENU DENTRO DEL JUEGO -->
 
 <div id="gameMenu">
 
-<button>Perfil</button>
-<button>Inventario</button>
-<button>Casas</button>
-<button>Tienda</button>
+<h2>MENÚ</h2>
+
+<button class="gameMenuBtn">
+Perfil
+</button>
+
+<button class="gameMenuBtn">
+Inventario
+</button>
+
+<button class="gameMenuBtn">
+Tienda
+</button>
+
+<button class="gameMenuBtn">
+Casas
+</button>
+
+<button class="gameMenuBtn">
+Configuración
+</button>
+
+<button class="gameMenuBtn" id="closeMenu">
+Cerrar
+</button>
 
 </div>
 
-<div id="joystick">
+<!-- TIENDA -->
 
-<button id="up">↑</button>
+<div id="shopPanel">
 
-<div>
+<h2>TIENDA</h2>
 
-<button id="left">←</button>
-<button id="down">↓</button>
-<button id="right">→</button>
+<div class="item">
+
+🎅 Ropa Santa
+
+<button>
+GRATIS
+</button>
 
 </div>
 
+<div class="item">
+
+🎅 Gorro Santa
+
+<button>
+GRATIS
+</button>
+
 </div>
+
+<div class="item">
+
+🎒 Mochila Santa
+
+<button>
+GRATIS
+</button>
+
+</div>
+
+<button id="closeShop">
+Cerrar
+</button>
+
+</div>
+
+<!-- CASAS -->
+
+<div id="housePanel">
+
+<h2>CASAS</h2>
+
+<div class="item">
+
+🏠 Casa Pequeña
+
+<button>
+Comprar
+</button>
+
+</div>
+
+<div class="item">
+
+🏡 Casa Mediana
+
+<button>
+Comprar
+</button>
+
+</div>
+
+<div class="item">
+
+🏰 Mansión
+
+<button>
+Comprar
+</button>
+
+</div>
+
+<button id="closeHouse">
+Cerrar
+</button>
+
+</div>
+
+<!-- PANEL CREADOR -->
+
+<div id="creatorLogin">
+
+<h2>Panel Creador</h2>
+
+<input
+type="password"
+id="creatorPassword"
+placeholder="Contraseña">
+
+<button id="loginCreator">
+Entrar
+</button>
+
+<button id="closeCreator">
+Cerrar
+</button>
+
+</div>
+
+<div id="creatorPanel">
+
+<h2>CREADOR</h2>
+
+<button id="addCoinsBtn">
++1000 Monedas
+</button>
+
+<button id="addDiamondsBtn">
++1000 Diamantes
+</button>
+
+<button id="healBtn">
+Curar
+</button>
+
+<button id="unlockBtn">
+Desbloquear Todo
+</button>
+
+<button id="closeCreatorPanel">
+Cerrar
+</button>
+
+</div>
+
+<!-- CONTROLES MOVILES -->
+
+<div id="mobileControls">
+
+<div class="row">
+<button id="upBtn">↑</button>
+</div>
+
+<div class="row">
+<button id="leftBtn">←</button>
+<button id="downBtn">↓</button>
+<button id="rightBtn">→</button>
+</div>
+
+</div>
+
+<!-- CANVAS DEL MUNDO -->
+
+<canvas id="gameCanvas"></canvas>
 
 <script src="main.js"></script>
 
